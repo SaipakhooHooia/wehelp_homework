@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale-1.0"/>
+        <meta charset="utf-8"/>
+        <title>Homework</title>
+        <link rel="stylesheet" type="text/css" href="homework.css" />
+    </head>
+    <body>
+        <div style="display: flex; align-items: center;margin:5px">
+            <span style="margin-right: auto;display: flex;font-size: 20px">My Website</span>
+            <span style="margin-left: auto;display: flex">
+                <a class="menu">item1</a>
+                <a class="menu">item2</a>
+                <a class="menu">item3</a>
+                <a class="menu">item4</a>
+            </span>
+            <span class="phone-menu">
+                <button onclick="clickMe()" ></button>
+            </span>
+            <div class="dropdown-content" id="Dropdown">
+                <div>
+                    <button onclick="clickMe2()"></button>
+                    <div style="display: grid;flex-wrap: wrap;">
+                        <a>Item 1</a>
+                        <a>Item 2</a>
+                        <a>Item 3</a>
+                        <a>Item 4</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="headline" id="change_title">Welcome to my home</div>
+        <script src="homework.js">
+            //試著用javascript把標題顏色改掉，成功。
+            //2024/4/7試著將js檔案另開新檔，成功。
+        </script>
+            <div class="promotion_list">
+                <div class="promotion"><img class="icon" src="fieren.png"><span style="margin-left:5px">Promotion1</span></div>
+                <div class="promotion"><img class="icon" src="fieren.png"><span style="margin-left:5px">Promotion2</span></div>
+                <div class="promotion"><img class="icon" src="fieren.png"><span style="margin-left:5px">Promotion3</span></div>
+            </div>
+                <br>
+                <div class="pic_list">
+                    <div class="picture"><img class="star" src="star.png"><div class="title">Title1</div></div>
+                    <div class="picture"><img class="star" src="star.png"><div class="title">Title2</div></div>
+                    <div class="picture"><img class="star" src="star.png"><div class="title">Title3</div></div>
+                    <div class="picture"><img class="star" src="star.png"><div class="title">Title4</div></div>
+                    <div class="picture"><img class="star" src="star.png"><div class="title">Title5</div></div>
+                    <div class="picture"><img class="star" src="star.png"><div class="title">Title6</div></div>
+                    <div class="picture"><img class="star" src="star.png"><div class="title">Title7</div></div>
+                    <div class="picture"><img class="star" src="star.png"><div class="title">Title8</div></div>
+                    <div class="picture"><img class="star" src="star.png"><div class="title">Title9</div></div>
+                    <div class="picture"><img class="star" src="star.png"><div class="title">Title10</div></div>
+                </div>
+            
+        
+    </body>
+</html>

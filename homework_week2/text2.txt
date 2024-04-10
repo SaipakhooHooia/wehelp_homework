@@ -1,0 +1,112 @@
+    if criteria=="rate":
+        for i in range(duration):
+            if hour+i not in John_booked_list:
+                #在14、15、16的預約時間裡可能是沒有寫到15就算只有一小時也已經被預約走了，就算14跟16有空此顧問也不可預約的情境造成結果錯誤
+                John_booked_list.append(hour+i)
+                book_consultant='John'
+            else:
+                if hour+i not in Jenny_booked_list:
+                    Jenny_booked_list.append(hour+i)
+                    book_consultant='Jenny'
+                else:
+                    if hour+i not in Bob_booked_list:
+                        Bob_booked_list.append(hour+i)
+                        book_consultant='Bob'
+                    else:
+                        print('No Service')
+
+    if criteria=="price":
+        for i in range(duration):
+            if hour+i not in Jenny_booked_list:
+                Jenny_booked_list.append(hour+i)
+                book_consultant='Jenny'
+            else:
+                if hour+i not in John_booked_list:
+                    John_booked_list.append(hour+i)
+                    book_consultant='John'
+                else:
+                    if hour+i not in Bob_booked_list:
+                        Bob_booked_list.append(hour+i)
+                        book_consultant='Bob'
+                    else:
+                        print('No Service')
+
+        consultants[0].update({"time": John_booked_list})
+        consultants[1].update({"time": Bob_booked_list})
+        consultants[2].update({"time": Jenny_booked_list})
+
+        if book_consultant:
+            print(book_consultant)
+
+        print(consultants)
+
+#    if criteria=="rate":
+#        for i in range(len(consultants)):
+#            if consultants[i]["rate"]==best_rate:#找出最好評價的顧問
+#                for j in range(duration):
+#                    if hour+j not in consultants[i]["time"]:#看他有沒有空
+#                        consultants[i]["time"].append(hour+j)
+#                        print(consultants[i]["name"])
+#                    else:
+#                        if consultants[i]["rate"]==second_rate:
+#                            for j in range(duration):
+#                                if hour+j not in consultants[i]["time"]:#看他有沒有空
+#                                    consultants[i]["time"].append(hour+j)
+#                                    print(consultants[i]["name"])
+#                                else:
+#                                    if consultants[i]["rate"]==last_rate:
+#                                        for j in range(duration):
+#                                            if hour+j not in consultants[i]["time"]:#看他有沒有空
+#                                                consultants[i]["time"].append(hour+j)
+#                                                print(consultants[i]["name"])
+#                                            else:
+#                                                print("No Service")
+#    print(consultants[i]["name"])
+
+#    print(consultants)
+
+#    for i in range(len(consultants)):
+#        consultants[i].update({"time": None})  # 在每个顾问的字典中新增一个键"hour"，初始值设为None
+
+#    if criteria == "rate":
+#        for i in range(len(consultants)):
+#            if consultants[i]["rate"] == best_rate:
+#                for j in range(duration):
+#                    time_dic.update({consultants[i]["name"]:[hour+j]})  # 添加预约时间到test_list
+#                    consultants[i].update({"time": time_dic[i]})  # 更新顾问的预约时间
+
+
+'''
+    if criteria=='rate':
+        booked_time=[]
+        #查詢排名最好的顧問有沒有空
+        for consultant in consultants:
+            if best_rate==consultant['rate']:
+                #查詢評價最好的顧問的時間
+                for i in range(duration):
+                    if hour+i not in consultants_time[consultant['name']]:
+                        booked_time.append(hour+i)
+                        print(consultant['name'])
+                consultants_time[consultant["name"]].extend(booked_time)
+        
+    if criteria=='price':
+        for consultant in consultants:
+            if best_price==consultant['price']:
+                #找到價格最好的顧問
+                    if not set(time_duration) & set(consultants_time[consultant['name']]):
+                        #set_A & set_B可以表示兩個set之間的交集，如果有一元素有交集就會返回該元素
+                        consultants_time[consultant["name"]].extend(time_duration)
+                        print("execute")
+                    if set(time_duration) & set(consultants_time[consultant['name']]):
+                        print("123")
+                        if second_price==consultant['price']:
+                            print(consultant['price'])
+                            for i in range(duration):
+                                if not set(time_duration) & set(consultants_time[consultant['name']]):
+                                    #set_A & set_B可以表示兩個set之間的交集，如果有一元素有交集就會返回該元素
+                                    consultants_time[consultant["name"]].extend(time_duration)
+                                    print("execute1")
+                          
+            else:
+                pass
+    print(consultants_time)'''

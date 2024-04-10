@@ -1,0 +1,114 @@
+
+                '''elif station[1] in message:
+                    dictionary.update({name:station[1]})
+                    print(f"{name} is at {station[1]} station.")#印出小碧潭
+                    break
+            else:
+                if station in message:
+                    dictionary.update({name:station})
+                    print(f"{name} is at {station} station.")
+                    break'''
+    """for name, message in messages.items():
+        for station in stations_list:
+            if isinstance(station, list):#如果站名在子列表裡
+                if station[0] in message:
+                    dictionary.update({name:station[0]})
+                    print(f"{name} is at {station[0]} station.")#印出七張
+                    break
+                elif station[1] in message:
+                    dictionary.update({name:station[1]})
+                    print(f"{name} is at {station[1]} station.")#印出小碧潭
+                    break
+            else:
+                if station in message:
+                    dictionary.update({name:station})
+                    print(f"{name} is at {station} station.")
+                    break"""
+        #輸出結果: {'Leslie': 'Xiaobitan',
+        # 'Bob': 'Ximen', 'Mary': 'Jingmei', 'Copper': 'Taipei Arena', 'Vivian': 'Xindian', 'Vivi': 'Qizhang'}
+
+    """   
+    for item in stations_list:
+        if current_station==item:
+            for name,station in dictionary.items():
+                #if isinstance(station, list) and station[1] == "Xiaobitan":
+                #    distance.append(abs(stations_list.index(item) - stations_list.index(station)) + 1)
+                if station in stations_list:
+                    distance.append(abs(stations_list.index(item)-stations_list.index(station)))
+                    print("execute")
+        #elif isinstance(item, list) and current_station in stations_list[16]:
+        else:
+                print("test")
+            #for name,station in dictionary.items():
+                if current_station==stations_list[16][0]:
+                    print("execute1")
+                    distance.append(abs(16 - stations_list.index(station)))
+                if current_station==stations_list[16][1]:
+                    distance.append(abs(16 - stations_list.index(station))+1)
+                    print("execute2")
+    print(distance) """
+'''
+    for name,station in dictionary.items():
+        for item in stations_list:
+            if isinstance(item, list):
+               if station==stations_list[16][0]:
+                   distance.append(abs(stations_list.index("Qizhang")-stations_list.index(current_station))) 
+                   break
+               if station==stations_list[16][1]:
+                   distance.append(abs(stations_list.index("Qizhang")-stations_list.index(current_station))+1) 
+                   break
+            if not isinstance(item,list):
+                distance.append(abs(stations_list.index(station)-stations_list.index(current_station))) 
+                break
+    print(distance)'''
+    
+
+"""  
+    if current_station=="Xiaobitan":
+        result_list.append(0)
+        result_list.append(abs(stations_list.index("Ximen")-stations_list.index("Qizhang"))+1)
+        result_list.append(abs(stations_list.index("Jingmei")-stations_list.index("Qizhang"))+1)
+        result_list.append(abs(stations_list.index("Taipei Arena")-stations_list.index("Qizhang"))+1)
+        result_list.append(abs(stations_list.index("Xindian")-stations_list.index("Qizhang"))+1)
+    else:
+        result_list.append(abs(stations_list.index("Qizhang")-stations_list.index(current_station))+1)
+        result_list.append(abs(stations_list.index("Ximen")-stations_list.index(current_station)))
+        result_list.append(abs(stations_list.index("Jingmei")-stations_list.index(current_station)))
+        result_list.append(abs(stations_list.index("Taipei Arena")-stations_list.index(current_station)))
+        result_list.append(abs(stations_list.index("Xindian")-stations_list.index(current_station)))
+        """
+    
+    #可以再試試line1、line2的方式，或者是用["Qizhang","Xiaobitan"]，檢查if stations_list[i][1]==True就進行額外處理
+    #print(stations_list[stations_list.index(current_station)])
+    #for i in stations_list:
+    #    if current_station=="Qizhang":
+    #        result_x=0
+    #        result_y=1
+    #    else:
+    #        result_x=stations_list.index(i)-stations_list.index(current_station)
+    #        result_y=1
+    #    result=abs(result_x)+abs(result_y)
+    #    result_list.append(result)
+
+    #for i in range(len(stations_list)):
+    #    result_x=abs(len(stations_list[i][0]) - len(stations_list[stations_list.index(current_station)][0]))
+    #    if stations_list[i][1]==str and stations_list[current_station][1]!=stations_list[i][1]:
+    #        result_y=1
+
+        #for j in range(len(stations_list[i])):
+        #    result_y=abs(stations_list[i][j]-stations_list[current_station][j])
+    #    result=abs(result_x)+abs(result_y)
+    #    result_list.append(result)
+
+"""
+    if min(result_list)==result_list[0]:
+        print("Leslie")
+    if min(result_list)==result_list[1]:
+        print("Bob")
+    if min(result_list)==result_list[2]:
+        print("Mary")
+    if min(result_list)==result_list[3]:
+        print("Copper")
+    if min(result_list)==result_list[4]:
+        print("Vivian")
+    print(result_list)"""
