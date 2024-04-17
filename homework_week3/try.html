@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta charset="utf-8"/>
+        <title>try_fetch_json</title>
+        <link rel="stylesheet" type="text/css" href="task3.css" />
+    </head>
+    <body>
+        <script>
+            document.addEventListener('DOMContentLoaded', async function () {
+            try {
+                let buffer_image_url = [];
+                let image_url = [];
+                let spot = [];
+                let response = await fetch('taipei-attractions-assignment-1.json');
+                let data = await response.json();
+                console.log(data);
+                
+                for (let i = 0; i < data.data.results.length; i++) {
+                    buffer_image_url = buffer_image_url.concat(data.data.results[i].filelist);
+                    spot = spot.concat(data.data.results[i].stitle);
+                    let regex = /https:\/\/.*?\.jpg/g;
+                    let match = regex.exec(data.data.results[i].filelist);
+                    if (match) {
+                        let firstMatch = match[0];
+                        image_url = image_url.concat(firstMatch);
+                    } 
+                }
+                console.log(image_url);
+                console.log(spot);
+            } catch (error) {
+                console.log('Error fetching JSON:', error);
+            }
+        });
+                        /*for (let i=0;i<data.length;i++){
+            let product=data[i];
+            console.log(product);//將三筆資料分別印出來
+            show.innerHTML+="Product:"+product.name+", Price:"+product.price+", Description:"+product.description+"<br>";
+           }*/
+        </script>
+        
+    </body>
+</html>
+
+

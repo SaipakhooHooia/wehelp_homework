@@ -53,7 +53,12 @@
     margin-bottom: auto;
     align-items: center;
     flex-wrap: wrap;
-    background-color: rgba(77, 244, 244, 0.223)
+    background-color: rgba(167, 167, 167, 0.174);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow:hidden;
+    font-weight: bold;
+    color:#000000;
 }
 
 .picture{
@@ -63,7 +68,7 @@
     width:100%;
     height: 250px; /* 這裡只是範例，可以根據實際情況設定高度 */
     position: relative; /* 啟用相對定位 */
-    background-image: url("Salie.jpg");
+    /*background-image: url("https://www.travel.taipei/d_upload_ttn/sceneadmin/image/A0/B0/C1/D878/E726/F304/2d6e8b50-76ce-4b7e-a795-0357cd6f2b3e.jpg");*/
     background-size: cover;
     background-position: center;
     margin-top: auto;
@@ -80,7 +85,8 @@
     height:250px;
     display: flex;
     margin-bottom: 20px;
-    background-color: rgba(77, 244, 244, 0.223);
+    background-color: rgba(0, 0, 0, 0.566);
+    color: #f9f9f9;
 }
 .title{
     size:20px;
@@ -91,9 +97,14 @@
     bottom: 0px;
     padding:10px;
     text-align: center;
-    background-color: rgba(110, 163, 36, 0.282);
+    background-color: rgba(254, 254, 254, 0.437);
     margin-left: auto; /* 在 Flexbox 中使用 margin 來實現自動填滿空間 */
     margin-right: auto; /* 在 Flexbox 中使用 margin 來實現自動填滿空間 */
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow:hidden;
+    font-weight: bold;
+    color:#ffffff;
 }
 .menu{
     width: 75px; 
@@ -140,7 +151,7 @@ body{margin:0px}
         margin-bottom: auto;
         align-items: center;
         flex-wrap: wrap;
-        background-color: rgba(77, 244, 244, 0.223)
+        background-color: rgba(167, 167, 167, 0.174);
     }
     .promotion:nth-child(3) {
         grid-column: span 2; /* 讓第三個promotion橫跨兩列 */
@@ -188,7 +199,7 @@ body{margin:0px}
         margin-bottom: auto;
         align-items: center;
         flex-wrap: wrap;
-        background-color: rgba(77, 244, 244, 0.223)
+        background-color: rgba(167, 167, 167, 0.174);
     }
     .promotion:nth-child(3) {
         grid-column: span 1; /* 取消讓第三個promotion橫跨兩列 */

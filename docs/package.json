@@ -1,0 +1,15 @@
+{
+  "name": "homework_week3",
+  "version": "1.0.0",
+  "description": "\"# homework_week1.github.io\"",
+  "main": "task3.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
