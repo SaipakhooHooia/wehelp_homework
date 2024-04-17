@@ -1,7 +1,12 @@
 import json
+import crawl
+
+file1=crawl.crawl('https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment-1')
+file2=crawl.crawl('https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment-2')
+
 address_dict={}
 #讀取檔案2的捷運站編碼和地址
-with open("taipei-attractions-assignment.json",mode='r',encoding="utf-8") as file:
+with open(file2,mode='r',encoding="utf-8") as file:
     data1=json.load(file)
     for item in data1['data']:
             #print("MRT:"+item['MRT'],"address:"+item["address"])
@@ -20,7 +25,7 @@ image=[]
 location_buffer=[]
 #檔案1
 #取出景點跟站牌號碼
-with open("taipei-attractions-assignment-1.json",mode='r',encoding="utf-8") as file:
+with open(file1,mode='r',encoding="utf-8") as file:
     data=json.load(file)
     for item in data['data']["results"]:
         #print("stitle:",i["stitle"])
@@ -70,7 +75,7 @@ with open('spot.csv', mode='w', newline='', encoding='utf-8-sig') as csvfile:
 #打開第二個json檔
 
 station_num={}
-with open("taipei-attractions-assignment.json",mode='r',encoding="utf-8") as file:
+with open(file2,mode='r',encoding="utf-8") as file:
     data1=json.load(file)
     for item in data1['data']:
         station_num[item['SERIAL_NO']]=item["MRT"]

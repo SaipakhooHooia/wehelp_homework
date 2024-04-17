@@ -32,10 +32,10 @@ def getdata(url):
     next_page=root.find('a',string="‹ 上頁")#找到標籤裡有‹ 上頁的網址內容
     return next_page['href']#取得下一頁的網址
 
-print("Input the url you want to crawl:")#https://www.ptt.cc/bbs/Lottery/index.html
-url=input()
-getdata(url)
-next_page="https://www.ptt.cc/"+getdata(url)
+#print("Input the url you want to crawl:")#https://www.ptt.cc/bbs/Lottery/index.html
+#url=input()
+getdata('https://www.ptt.cc/bbs/Lottery/index.html')
+next_page="https://www.ptt.cc/"+getdata('https://www.ptt.cc/bbs/Lottery/index.html')
 
 count=0
 while next_page!=None:
