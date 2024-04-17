@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     let buffer_image_url = [];
     let image_url = [];
     let turist_spot = [];
-    let response = await fetch('taipei-attractions-assignment-1.json');
+    let response = await fetch('https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment-1');
     let data = await response.json();
     //console.log(data);
     
