@@ -1,14 +1,12 @@
 .promotion_list{
     display:grid;
-    /*flex: 1 1 33.33%;*/
     grid-row-gap:20px;
     grid-column-gap:20px;
-    grid-template-columns: 373.3333px 393.3333px 393.3333px;
-    /*grid-template-columns: 1fr 1fr 1fr;*/
+    /*grid-template-columns: 373.3333px 393.3333px 393.3333px;*/
+    grid-template-columns: calc((1180px / 3) - 20px) calc(1180px / 3) calc(1180px / 3);
     width:1200px;
-    justify-content: space-between;/*平均分配寬度，第一項和最後一項貼齊邊緣*/
+    justify-content: space-between;
     margin-top: 10px;
-    
     margin-left: auto;
     margin-right: auto;
 }
@@ -89,9 +87,9 @@
     color: #f9f9f9;
 }
 .title{
-    size:20px;
+    font-size:20px;
     position: absolute;
-    top: 85%;
+    /*top: 85%;*/
     right: 0px;
     left: 0px;
     bottom: 0px;
@@ -101,10 +99,11 @@
     margin-left: auto; /* 在 Flexbox 中使用 margin 來實現自動填滿空間 */
     margin-right: auto; /* 在 Flexbox 中使用 margin 來實現自動填滿空間 */
     white-space: nowrap;
-    text-overflow: ellipsis;
+    text-overflow: ellipsis;/*將多餘的文字用...代替*/
     overflow:hidden;
     font-weight: bold;
     color:#ffffff;
+    align-self: center;
 }
 .menu{
     width: 75px; 
@@ -114,6 +113,19 @@
     flex:auto;
     align-items: center
 }
+
+.more-button{
+    padding: 15px;
+    height: 60px;
+    width:200px;
+    justify-content: center;
+    border-radius:5px;
+    border: 1px;
+    font-size: 20px;
+    color:#0000007e;
+    background-color: rgba(167, 167, 167, 0.174);
+}
+
 .phone-menu{
     display:none;
     text-align: center;
