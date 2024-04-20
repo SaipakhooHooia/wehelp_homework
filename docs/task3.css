@@ -57,6 +57,7 @@
     overflow:hidden;
     font-weight: bold;
     color:#000000;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .picture{
@@ -104,6 +105,7 @@
     font-weight: bold;
     color:#ffffff;
     align-self: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.301);
 }
 .menu{
     width: 75px; 
@@ -124,6 +126,7 @@
     font-size: 20px;
     color:#0000007e;
     background-color: rgba(167, 167, 167, 0.174);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.178);
 }
 
 .phone-menu{
@@ -179,8 +182,8 @@ body{margin:0px}
         margin-right: auto;
         /*background-image: url("frieren.jpg");*/
     }
-    .picture:nth-child(9),
-    .picture:nth-child(10) {
+    .picture:nth-last-child(1),/*倒數第一個和第二個物件要寬度是兩列*/
+    .picture:nth-last-child(2) {
     grid-column: span 2; /* 讓第九和第十個 picture 橫跨兩列 */
 }
 }
