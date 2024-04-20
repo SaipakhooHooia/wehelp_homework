@@ -113,7 +113,7 @@ fetch('https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assi
   .then(data => {
     dataContainer = data; // 將取得的資料賦值給 dataContainer
   })
-  .catch(error => console.log(`Error: ${error}`));
+  .catch(error => console.log(`Error: ${error}`));//定義一個空的變數，等fetch跑成功後才會把值傳給下面的button
 
 
 let pictureContainers = document.querySelectorAll(".pic_list .picture");
@@ -126,10 +126,24 @@ function page_button(){
     divElement.innerHTML = '<img class="star" src="star.png"><div class="title"></div>';
     pictureContainer2.appendChild(divElement);
     let newpictureContainers = document.querySelectorAll(".pic_list .picture");
-    for (let j =0;j<newpictureContainers.length;j++){
-      console.log('*****');
-      newpictureContainers[i].style.backgroundImage = 'url(' + image_url[i+3] + ')' || '';
-    }
     
+    for (let j =0;j<newpictureContainers.length;j++){
+      newpictureContainers[j].style.backgroundImage = 'url(' + image_url[j+3] + ')' || '';
+    }
+
+    let pictureElements = document.querySelectorAll('.title');
+    for (let j =0;j<pictureElements.length;j++){
+      let spanElement1 = document.createElement('span');
+      let textNode = document.createTextNode(turist_spot[j+3]);
+      spanElement1.appendChild(textNode);
+      if (pictureElements[j].innerText){
+        continue;
+      }
+      else{
+        pictureElements[j].appendChild(spanElement1);
+      }
+      
+      //textElements[i].classList.add('text');
+    }
   }}  
 } 
