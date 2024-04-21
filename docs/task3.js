@@ -125,10 +125,13 @@ if (dataContainer && generate){
   for (let i=0;i<pictureContainers.length;i++){
     let divElement = document.createElement('div');
     divElement.className='picture';
-    divElement.innerHTML = '<img class="star" src="star.png"><div class="title"></div>';//創造新的div裝圖片
+    if(divElement.innerHTML){
+      continue;
+    }
+    else{
+    divElement.innerHTML = '<img class="star" src="star.png"><div class="title"></div>';}//創造新的div裝圖片
     pictureContainer2.appendChild(divElement);
     let newpictureContainers = document.querySelectorAll(".pic_list .picture");//為新的圖片div取新名稱
-    
     for (let j =0;j<newpictureContainers.length;j++){
       newpictureContainers[j].style.backgroundImage = 'url(' + image_url[j+3] + ')' || '';
     }
