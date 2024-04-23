@@ -20,6 +20,10 @@ login_data = {
     "password": "test"
 }
 
+class ErrorType(str):
+    empty_message="Please enter username and password",
+    wrong_message="Username orpassword is not correct"
+
 @app.get("/", response_class=HTMLResponse)
 async def read_item(request: Request):
     #return RedirectResponse(url="/signin")
@@ -31,10 +35,10 @@ async def login(request: Request,username: Optional[str] = Form(None), password:
         request.session["logged_in"] = True
         return RedirectResponse(url="/member")
     elif not username or not password:
-        error_message = "Please enter username and password"  # 自定義錯誤訊息
+        error_message = "帳號、或密碼不能為空"  # 自定義錯誤訊息
         return RedirectResponse(url=f"/error?message={error_message}")
     elif username != login_data["username"] or password != login_data["password"]:
-        error_message = "Username orpassword is not correct"  # 自定義錯誤訊息
+        error_message = "帳號、或密碼輸入錯誤"  # 自定義錯誤訊息
         return RedirectResponse(url=f"/error?message={error_message}")
 
     '''
@@ -53,8 +57,11 @@ async def login_success(request: Request):
         return templates.TemplateResponse("signin.html", {"request": request})
 
 @app.post("/error", response_class=HTMLResponse)  
-async def login_fail(request: Request,error_message:Optional[str]=None):
+async def login_fail(request: Request):
+    error_message = request.query_params.get("message")
+    print("error_message=", error_message)
     return templates.TemplateResponse("login_fail.html", {"request": request, "message": error_message})
+
 
 @app.get("/signout", response_class=HTMLResponse)
 async def logout(request: Request):
