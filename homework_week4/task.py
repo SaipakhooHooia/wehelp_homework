@@ -11,6 +11,8 @@ app = FastAPI()
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
+app.add_middleware(SessionMiddleware, secret_key = 'test', https_only = True)
+
 templates = Jinja2Templates(directory="C:/Users/kawam/Desktop/html practice/homework/homework_week4/")
 
 login_data = {
@@ -24,8 +26,9 @@ async def read_item(request: Request):
     return templates.TemplateResponse("signin.html", {"request": request})
 
 @app.post("/signin", response_class=HTMLResponse)
-async def login(username: Optional[str] = Form(None), password: Optional[str] = Form(None) ,remember_me: Optional[bool] = Form(None)):
+async def login(request: Request,username: Optional[str] = Form(None), password: Optional[str] = Form(None) ,remember_me: Optional[bool] = Form(None)):
     if username == login_data["username"] and password == login_data["password"] and remember_me:
+        request.session["logged_in"] = True
         return RedirectResponse(url="/member")
     elif not username or not password:
         error_message = "username or password cannot be empty"  # 自定義錯誤訊息
@@ -33,7 +36,6 @@ async def login(username: Optional[str] = Form(None), password: Optional[str] = 
     elif username != login_data["username"] or password != login_data["password"]:
         error_message = "wrong username or password"  # 自定義錯誤訊息
         return RedirectResponse(url=f"/error?message={error_message}")
-    
 
     '''
     elif username != login_data["username"] or password != login_data["password"]:
@@ -44,11 +46,22 @@ async def login(username: Optional[str] = Form(None), password: Optional[str] = 
     
 @app.post("/member", response_class=HTMLResponse)  
 async def login_success(request: Request):
-    return templates.TemplateResponse("login_sucess.html", {"request": request})
+    print("Session:", request.session)
+    if request.session.get("logged_in") == True:
+        return templates.TemplateResponse("login_sucess.html", {"request": request})
+    else:
+        return templates.TemplateResponse("signin.html", {"request": request})
 
 @app.post("/error", response_class=HTMLResponse)  
 async def login_fail(request: Request,error_message:Optional[str]=None):
     return templates.TemplateResponse("login_fail.html", {"request": request, "message": error_message})
+
+@app.get("/signout", response_class=HTMLResponse)
+async def logout(request: Request):
+    # 删除session数据
+    request.session["logged_in"] = False
+    print("Session:", request.session)
+    return RedirectResponse(url="/")
 
 '''
 @app.get("/get-by-name")

@@ -8,10 +8,12 @@ function login(){
     let password_message=document.getElementById('password');
     let checkbox_message=document.getElementById('scales');
     if(account_message.value==loginData.username && password_message.value==loginData.password && checkbox_message.checked){
+        console.log("Logged in status:", "{{ request.session.logged_in }}");
         return true;
     }
     else if(!checkbox_message.checked){
-        alert("Please check the checkbox first");
+        alert("Please aggree to the terms of service to continue.");
         return false;
     }
+    
 }
