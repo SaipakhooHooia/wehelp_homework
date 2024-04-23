@@ -35,10 +35,10 @@ async def login(request: Request,username: Optional[str] = Form(None), password:
         request.session["logged_in"] = True
         return RedirectResponse(url="/member")
     elif not username or not password:
-        error_message = "帳號、或密碼不能為空"  # 自定義錯誤訊息
+        error_message = "Please enter username and password"  # 自定義錯誤訊息
         return RedirectResponse(url=f"/error?message={error_message}")
     elif username != login_data["username"] or password != login_data["password"]:
-        error_message = "帳號、或密碼輸入錯誤"  # 自定義錯誤訊息
+        error_message = "Username or password is not correct"  # 自定義錯誤訊息
         return RedirectResponse(url=f"/error?message={error_message}")
 
     '''
