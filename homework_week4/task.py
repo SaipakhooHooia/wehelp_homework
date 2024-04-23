@@ -3,6 +3,9 @@ from fastapi.responses import HTMLResponse,RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from typing import Optional
+from starlette.applications import Starlette
+from starlette.middleware import Middleware
+from starlette.middleware.sessions import SessionMiddleware
 
 app = FastAPI()
 
@@ -18,15 +21,19 @@ login_data = {
 @app.get("/", response_class=HTMLResponse)
 async def read_item(request: Request):
     #return RedirectResponse(url="/signin")
-    return templates.TemplateResponse("login.html", {"request": request})
+    return templates.TemplateResponse("signin.html", {"request": request})
 
-@app.post("/signin")
-async def login(username: str = Form(), password: str = Form() ,remember_me: Optional[bool] = Form(None)):
+@app.post("/signin", response_class=HTMLResponse)
+async def login(username: Optional[str] = Form(None), password: Optional[str] = Form(None) ,remember_me: Optional[bool] = Form(None)):
     if username == login_data["username"] and password == login_data["password"] and remember_me:
         return RedirectResponse(url="/member")
+    elif not username or not password:
+        error_message = "username or password cannot be empty"  # 自定義錯誤訊息
+        return RedirectResponse(url=f"/error?message={error_message}")
     elif username != login_data["username"] or password != login_data["password"]:
         error_message = "wrong username or password"  # 自定義錯誤訊息
         return RedirectResponse(url=f"/error?message={error_message}")
+    
 
     '''
     elif username != login_data["username"] or password != login_data["password"]:
