@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Item Details</title>
+    <link rel="stylesheet" type="text/css" href="static/styles.css" />
+</head>
+<body>
+    <div class="title_container"><h1>歡迎光臨，請輸入帳號密碼</h1></div>
+    <div class="login-container">
+    <div class="login-text">登入系統</div>
+    <form action="/login" method="post" onsubmit="return login()">
+    <div style="display: flex;flex-wrap: wrap;gap:20px">
+        <label class="login-box" for="username">帳號</label>
+        <input type="text" id="username" name="username">
+        <label class="login-box" for="password">密碼</label>
+        <input type="text" id="password" name="password">
+    </div>
+        <div style="width:100%;margin-top: 20px;">
+            <input type="checkbox" id="scales" name="remember_me" />
+            <label class="login-box" for="scales" >同意條款</label>
+        </div>
+        <button type="submit" style="margin-top: 20px;">登入</button>
+    </form>
+        <script defer src="static/login.js"></script>
+    </div>
+    <!--<h1>Item ID: {{ id }}</h1>-->
+</body>
+</html>
