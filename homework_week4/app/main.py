@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Request, Form
-from fastapi.responses import HTMLResponse,RedirectResponse
+from fastapi.responses import HTMLResponse,RedirectResponse,JSONResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from typing import Optional
@@ -13,7 +13,7 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 
 app.add_middleware(SessionMiddleware, secret_key = 'test', https_only = True)
 
-templates = Jinja2Templates(directory="C:/Users/kawam/Desktop/html practice/homework/homework_week4/")
+templates = Jinja2Templates(directory="templates")
 
 login_data = {
     "username": "test",
@@ -33,34 +33,43 @@ async def read_item(request: Request):
 async def login(request: Request,username: Optional[str] = Form(None), password: Optional[str] = Form(None) ,remember_me: Optional[bool] = Form(None)):
     if username == login_data["username"] and password == login_data["password"] and remember_me:
         request.session["logged_in"] = True
-        return RedirectResponse(url="/member")
+        print("Session:", request.session)
+        #return RedirectResponse(url="/member")
+        #return request.session["logged_in"] == True
+        # return JSONResponse(content={"error": error_message})
+        return JSONResponse(content={"login": request.session})
     elif not username or not password:
         error_message = "Please enter username and password"  # 自定義錯誤訊息
-        return RedirectResponse(url=f"/error?message={error_message}")
+        request.session["error_message"] = error_message
+        return JSONResponse(content={"error": error_message})
     elif username != login_data["username"] or password != login_data["password"]:
         error_message = "Username or password is not correct"  # 自定義錯誤訊息
-        return RedirectResponse(url=f"/error?message={error_message}")
-
-    '''
-    elif username != login_data["username"] or password != login_data["password"]:
-        
-    elif remember_me is None or remember_me != 'on':
-        error_message = "Please comfirm user manual"
-        return RedirectResponse(url=f"/error?message={error_message}")'''
+        request.session["error_message"] = error_message
+        return JSONResponse(content={"error": error_message})
     
-@app.post("/member", response_class=HTMLResponse)  
+@app.get("/member", response_class=HTMLResponse)  
 async def login_success(request: Request):
     print("Session:", request.session)
     if request.session.get("logged_in") == True:
         return templates.TemplateResponse("login_sucess.html", {"request": request})
-    else:
-        return templates.TemplateResponse("signin.html", {"request": request})
+    if request.session.get("logged_in") == False:
+        return RedirectResponse(url="/")
+    #else:
+    #    return RedirectResponse(url="/")
+        #return templates.TemplateResponse("signin.html", {"request": request})
 
-@app.post("/error", response_class=HTMLResponse)  
+@app.get("/error_dealing", response_class=HTMLResponse)  
 async def login_fail(request: Request):
-    error_message = request.query_params.get("message")
+    error_message = request.session.get("error_message")  
+    return RedirectResponse(url=f"/error?message={error_message}")
+
+@app.get("/error", response_class=HTMLResponse)  
+async def login_fail(request: Request):
+    error_message = request.session.get("error_message")
     print("error_message=", error_message)
+    
     return templates.TemplateResponse("login_fail.html", {"request": request, "message": error_message})
+    
 
 
 @app.get("/signout", response_class=HTMLResponse)

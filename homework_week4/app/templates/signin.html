@@ -8,7 +8,7 @@
     <div class="title_container"><h1>歡迎光臨，請輸入帳號密碼</h1></div>
     <div class="login-container">
     <div class="login-text">登入系統</div>
-    <form action="/signin" method="post" onsubmit="return login()">
+    <form action="/signin" method="post" onsubmit="return login()" id="signin" onsubmit="submitForm(event)">
     <div style="display: flex;flex-wrap: wrap;gap:20px">
         <label class="login-box" for="username">帳號</label>
         <input type="text" id="username" name="username">
