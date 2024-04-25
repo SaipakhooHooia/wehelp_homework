@@ -8,7 +8,7 @@ function login(){
     }
     
 }
-
+ /*
 document.getElementById('signin').addEventListener('submit', async function(event) {
     event.preventDefault(); // 阻止默认的表单提交行为
 
@@ -18,18 +18,15 @@ document.getElementById('signin').addEventListener('submit', async function(even
         body: formData
     });
 
-    if (response.ok) {
+   if (response.ok) {
         const responseData = await response.json(); // 解析 JSON 响应数据
-        if (responseData.error) {
+        if (responseData.login) {
             // 显示错误提示信息或者其他处理
-            window.location.href = '/error_dealing'
-
-        } else {
-            // 登录成功，重定向到/member页面
             window.location.href = '/member';
+
         }}
 
-});
+});*/
 /*if(!checkbox_message.checked){
         alert("Please aggree to the terms of service to continue.");
         return false;
