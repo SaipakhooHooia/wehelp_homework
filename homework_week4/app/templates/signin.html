@@ -23,6 +23,19 @@
     </form>
         <script defer src="static/login.js"></script>
     </div>
+    <div>
+        <form method="get" onsubmit="return calculate(event)" id="calculateForm" action="/square/{positive}"> <!--action="/square/"-->
+            <div class="login-container">
+            <div class="login-text">計算正整數的平方</div>
+            <div style="display: flex;flex-wrap: wrap;gap:20px;width:100%">
+            <label class="login-box" for="positive" style="width: 20%;">正整數</label>
+            <input type="number" id="positive" name="positive">
+            <div style="width:100%;">
+            <button type="button" onclick="submitForm()">計算</button></div>
+        </div>
+    </div>
+        </form>
+    </div>
     <!--<h1>Item ID: {{ id }}</h1>-->
 </body>
 </html>

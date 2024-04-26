@@ -20,7 +20,7 @@ h1 {
 
 .login-container{
     margin-top: 50px;
-    width:300px;
+    width:370px;
     flex-wrap: wrap;
     display: flex;
     justify-content: center;
@@ -43,6 +43,6 @@ h1 {
     width:20%;
 }
 
-#username, #password {
+#username, #password, #positive {
     width: 70%;
 }

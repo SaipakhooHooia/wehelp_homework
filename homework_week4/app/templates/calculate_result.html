@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Item Details</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', path='styles.css') }}" />
+</head>
+<body>
+    <form action="/square/{positive}" method="get">
+    <div class="title_container"><h1>正整數平方計算結果</h1></div>
+    <div class="login-container">
+        <a class="login-text" >{{message}}</a>
+    </form>
+</body>
+</html>

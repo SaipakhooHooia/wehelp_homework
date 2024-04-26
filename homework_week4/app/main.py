@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request, Form,Query
+from fastapi import FastAPI, Request, Form,Query, Path
 from fastapi.responses import HTMLResponse,RedirectResponse,JSONResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -71,3 +71,8 @@ async def logout(request: Request):
     #request.session.clear()
     print("Session:", request.session)
     return RedirectResponse(url="/")
+
+@app.get("/square/{positive}", response_class=HTMLResponse)
+async def calcaulate(request: Request,positive: int = Path(...)):
+    result = positive * positive
+    return templates.TemplateResponse("calculate_result.html", {"request": request, "message": result})
