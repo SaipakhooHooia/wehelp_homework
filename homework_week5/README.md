@@ -150,10 +150,9 @@ WHERE member.username = 'test';
 
 **Use SELECT, SQL Aggregation Functions with JOIN statement, get the average like count of messages GROUP BY sender username.**
 ```
-USE website
-SELECT message.member_id, member.username AS sender_username, AVG(message.like_count) AS avg_like_count
-FROM message
-JOIN member ON message.member_id = member.id
-GROUP BY message.member_id;
+SELECT AVG(message.like_count) AS average_likes, member.username AS sender_username
+FROM website.message
+JOIN website.member ON message.member_id = member.id
+GROUP BY sender_username;
 ```
 ![Result](/homework_week5/pic/join_group_by.png)
