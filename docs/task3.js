@@ -60,7 +60,7 @@ try {
     for (let i = 0; i < pictureContainers.length; i++) {
         pictureContainers[i].style.backgroundImage = 'url(' + image_url[i+3] + ')' || ''; // 開始索引改為 3
     }
-    let promotionText = document.querySelectorAll('.promotion [id^=\"text\"]');//選擇在promotion底下所有以text開頭的span
+    let promotionText = document.querySelectorAll('.promotion [class^=\"text\"]');//選擇在promotion底下所有class以text開頭的span
     for (let i=0;i<imageContainers.length;i++){
       let spanElement = document.createElement('span');
       let textNode = document.createTextNode(turist_spot[i]);

@@ -9,7 +9,7 @@ app = FastAPI()
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-app.add_middleware(SessionMiddleware, secret_key = 'test', https_only = True)
+app.add_middleware(SessionMiddleware, secret_key = 'test', https_only = True)#此處的secret_key應該是供數位簽章用。傳輸的資料後面加上一個對應的秘密字串，當伺服器回傳時，可以回應該字串，若是其他使用者偷偷串改的話，由於串改的資料和我的秘密字串無法相符
 
 templates = Jinja2Templates(directory="templates")
 
