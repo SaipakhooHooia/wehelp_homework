@@ -153,6 +153,6 @@ WHERE member.username = 'test';
 SELECT AVG(message.like_count) AS average_likes, member.name AS sender_name
 FROM website.message
 JOIN website.member ON message.member_id = member.id
-GROUP BY member_id,sender_name;
+GROUP BY sender_name;
 ```
 ![Result](/homework_week5/pic/join_group_by.png)
