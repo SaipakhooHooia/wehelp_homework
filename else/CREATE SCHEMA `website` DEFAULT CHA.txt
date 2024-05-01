@@ -86,5 +86,12 @@ GROUP BY member_id,sender_name;
 
 mysqldump -u root -p website > data.sql
 
+USE website
+SELECT message.member_id, member.username AS sender_username, AVG(message.like_count) AS avg_like_count
+FROM message
+JOIN member ON message.member_id = member.id
+GROUP BY message.member_id;
+
+
 
 
