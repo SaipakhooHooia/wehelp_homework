@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Item Details</title>
+    <link rel="stylesheet" type="text/css" href="static/styles.css" />
+</head>
+<body>
+    <form action="/member" method="get">
+    <div class="title_container"><h1>歡迎光臨，這是會員頁</h1></div>
+    <div class="login-container">
+    <div class="login-text">{{message}},歡迎登入系統</div></form>
+    <form action="/signout" method="get">
+    <a href="/signout">登出</a>
+    </form>
+
+    <div class="login-container">
+    <div class="login-text">快來留言吧</div>
+    <form method="post" onsubmit="return commentLine()" action="/createMessage">
+    <div style="display: flex;flex-wrap: wrap;gap:20px">
+        <label class="login-box" for="comment">留言</label>
+        <input type="text" id="comment" name="comment">  
+    </div>
+        <button type="submit" style="margin-top: 20px;">送出</button>
+    </form>  
+    </div>
+
+    <div class="login-container">
+        <div id = "commentBroad" style = "font-size: x-large;">
+            {% for msg in comment %}
+            <p><strong>{{ msg[0] }}:</strong> {{ msg[1] }}</p>
+            {% endfor %}
+        </div>
+    </div>
+    <script defer src="static/login.js"></script>
+</body>
+</html>

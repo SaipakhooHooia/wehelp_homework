@@ -83,3 +83,8 @@ def delete_item(item_id:int = Path(...,description='The ID of the item to delete
 #--reload: make the server restart after code changes. Only use for development.
 #/docs
 #/redoc
+
+@app.get("/blog/{id}")
+def get_blog(id: int):
+    return {"data": f"Blog 的 id 是：{id}"}
+#http://127.0.0.1:8000/blog/1
