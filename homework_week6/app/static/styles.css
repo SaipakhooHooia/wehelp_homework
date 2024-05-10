@@ -48,6 +48,7 @@ h1 {
     word-wrap: break-word; /* 舊版的屬性名稱 */
     overflow-wrap: break-word; /* 新版的屬性名稱 */
     white-space: normal; /* 確保換行行為正常 */
+    float: left;
 }
 
 .login-text{

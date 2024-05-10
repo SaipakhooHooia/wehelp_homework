@@ -25,10 +25,10 @@
     </div>
 
     <div class="comment-broad">
-        <div id = "commentBroad" style = "font-size: x-large;">
+        <div id = "commentBroad" style = "font-size: x-large; width: 100%;">
             {% for msg in comment %}
             <p>
-                <span class = "wrap-text" style="float: left;"><strong>{{ msg[0] }}:</strong> {{ msg[1] }}</span>
+                <span class = "wrap-text"><strong>{{ msg[0] }}:</strong> {{ msg[1] }}</span>
                 {%if msg[2]==member_id%}
                 <form method="post" onsubmit="return deleteComment()" action="/deleteMessage">
                 <input type="hidden" name="message_id" value="{{ msg[3] }}">
