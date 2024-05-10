@@ -14,6 +14,34 @@ mydb = mysql.connector.connect(
 
 mycursor = mydb.cursor()
 
+mycursor.execute("SHOW DATABASES")
+databases = []
+for db in mycursor:
+    databases.append(db[0])#db會返回一個tuple，因此要取tuple的第一個值
+
+print(databases)
+if "website" not in databases:
+    mycursor.execute("CREATE DATABASE website")
+    mycursor.execute("""CREATE TABLE `website`.`member` (
+    `id` BIGINT PRIMARY KEY AUTO_INCREMENT COMMENT 'Unique ID',
+    `name` VARCHAR(255) NOT NULL COMMENT 'Name',
+    `username` VARCHAR(255) NOT NULL COMMENT 'Username',
+    `password` VARCHAR(255) NOT NULL COMMENT 'Password',
+    `follower_count` INT UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Follower Count',
+    `time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Signup Time'
+    );""")
+    mycursor.execute("""CREATE TABLE website.message (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT COMMENT 'Unique ID',
+    member_id BIGINT NOT NULL COMMENT 'Member ID for Message Sender',
+    FOREIGN KEY (member_id) REFERENCES member(id),
+    content VARCHAR(255) NOT NULL COMMENT 'Content',
+    like_count INT UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Like Content',
+    time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Publish Time'
+    );""")
+    mydb.commit()
+else:
+    pass
+
 app = FastAPI()
 
 app.mount("/static", StaticFiles(directory="static"), name="static")

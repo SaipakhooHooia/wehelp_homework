@@ -31,6 +31,25 @@ h1 {
     gap:20px;
 }
 
+.comment-broad{
+    margin-top: 50px;
+    width:370px;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    gap:20px;
+}
+
+.wrap-text {
+    word-wrap: break-word; /* 舊版的屬性名稱 */
+    overflow-wrap: break-word; /* 新版的屬性名稱 */
+    white-space: normal; /* 確保換行行為正常 */
+}
+
 .login-text{
     font-weight: bold;
     font-size: x-large;
