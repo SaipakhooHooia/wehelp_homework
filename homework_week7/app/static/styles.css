@@ -32,7 +32,7 @@ h1 {
 }
 
 .comment-broad{
-    margin-top: 50px;
+    margin-top: 20px;
     width:370px;
     flex-wrap: wrap;
     display: flex;
@@ -63,9 +63,10 @@ h1 {
     width:20%;
 }
 
-#username, #password, #signup_name, #signup_username, #signup_password, #comment{
+#username, #password, #signup_name, #signup_username, #signup_password, #comment, #search_username, #new_name{
     width: 70%;
     margin-right: auto;
+    height: 30px;
 }
 
 form{

@@ -1,10 +1,11 @@
-from fastapi import FastAPI, Request, Form,Query, Path
+from fastapi import FastAPI, Request, Form,Query, Body
 from fastapi.responses import HTMLResponse,RedirectResponse,JSONResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from typing import Optional
 from starlette.middleware.sessions import SessionMiddleware
 import mysql.connector
+from pydantic import BaseModel
 
 mydb = mysql.connector.connect(
     host="localhost",
@@ -126,3 +127,41 @@ async def delete(request: Request,message_id: Optional[str] = Form(None)):
             return RedirectResponse(url="/member", status_code=303)
     else:
         return RedirectResponse(url="/")
+
+@app.get("/api/member", response_class=JSONResponse)
+async def search_member(request: Request,username:Optional[str] = Query(None)):
+    mycursor.execute("SELECT id,name FROM website.member WHERE username = %s", (username,))
+    user_record = mycursor.fetchone()
+    if request.session.get("logged_in") == True and user_record:
+        member_id, member_name = user_record
+        response = {
+            "data":{
+            "id":member_id,
+            "name":member_name,
+            "username":username
+            }
+            }
+        return response
+    elif not user_record or not request.session["logged_in"]:
+        response = {
+            "data":None
+            }
+        return response
+
+class NameUpdate(BaseModel):
+    name: Optional[str]
+
+@app.patch("/api/member", response_class=JSONResponse)
+async def new_name(request: Request,newname:NameUpdate = Body(...)):
+    username = request.session.get('member_username')
+    name = newname.name
+    if request.session.get("logged_in") == True:
+        mycursor.execute("UPDATE website.member SET name = %s WHERE username = %s", (name,username))
+        mydb.commit()
+        if mycursor.rowcount > 0:
+            return {"ok":True}
+        else:
+            return {"error":True}
+    else:
+        return {"error":True}
+

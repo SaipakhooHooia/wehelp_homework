@@ -4,6 +4,7 @@ function login(){
     let password = document.getElementById('password').value;
     if(!checkbox_message.checked){
         alert("Please agree to the terms of service to continue.");
+        return false;
     }
     if(!username || !password){
         alert("No empty input.");
@@ -32,3 +33,8 @@ function commentLine(){
     let commentBroad = document.getElementById('commentBroad');
     commentBroad.innerText = message;
 }
+
+
+
+
+  

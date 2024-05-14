@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Item Details</title>
+    <link rel="stylesheet" type="text/css" href="static/styles.css" />
+</head>
+<body>
+    <div class="title_container"><h1>歡迎光臨，請註冊登入系統</h1></div>
+    <div>
+        <form method="post" onsubmit="return signup()" action="/signup"> 
+            <div class="login-container">
+            <div class="login-text">註冊帳號</div>
+            <div style="display: flex;flex-wrap: wrap;gap:20px">
+            <label class="login-box" for="signup_name">姓名</label>
+            <input type="text" id="signup_name" name="signup_name">
+            <label class="login-box" for="signup_username">帳號</label>
+            <input type="text" id="signup_username" name="signup_username">
+            <label class="login-box" for="signup_password">密碼</label>
+            <input type="password" id="signup_password" name="signup_password">
+            <div style="width:100%;">
+            <button type="submit" >註冊</button></div><!--onclick="submitForm()"-->
+        </div>
+    </div>
+        </form>
+    </div>
+
+    <div class="login-container">
+    <div class="login-text">登入系統</div>
+    <form action="/signin" method="post" onsubmit="return login()" onsubmit="submitForm(event)">
+    <div style="display: flex;flex-wrap: wrap;gap:20px">
+        <label class="login-box" for="username">帳號</label>
+        <input type="text" id="username" name="username">
+        <label class="login-box" for="password">密碼</label>
+        <input type="password" id="password" name="password">
+    </div>
+        <div style="width:100%;margin-top: 20px;">
+            <input type="checkbox" id="scales" name="remember_me" />
+            <label class="login-box" for="scales" >同意條款</label>
+        </div>
+        <button type="submit" style="margin-top: 20px;">登入</button>
+    </form>
+        <script defer src="static/login.js"></script>
+    </div>
+    
+    <!--<h1>Item ID: {{ id }}</h1>-->
+</body>
+</html>

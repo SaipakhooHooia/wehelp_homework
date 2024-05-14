@@ -28,8 +28,13 @@ async def read_item(request: Request):
 
 @app.post("/signin", response_class=HTMLResponse)
 async def login(request: Request,username: Optional[str] = Form(None), password: Optional[str] = Form(None)):
-    mycursor.execute("SELECT COUNT(name) FROM website.member WHERE username = %s AND password = %s", (username, password))
-    if mycursor.fetchone()[0] > 0:
+    unsafe_query = "SELECT * FROM website.member WHERE username = '" + username + "' AND password = '" + password + "'"
+    mycursor.execute(unsafe_query)
+    mydb.commit()
+    print(unsafe_query)
+    #mycursor.execute("SELECT * FROM website.member WHERE username = %s AND password = %s", (username, password))
+    if mycursor.fetchone():
+        '''
         mycursor.execute("SELECT id,name FROM website.member WHERE username = %s AND password = %s", (username, password))
         user_record = mycursor.fetchone()
         member_id, member_name = user_record
@@ -37,11 +42,9 @@ async def login(request: Request,username: Optional[str] = Form(None), password:
         request.session['member_id'] = member_id
         request.session['member_username'] = username
         request.session["logged_in"] = True
-        print("Session:", request.session)
+        print("Session:", request.session)'''
+        request.session["logged_in"] = True
         return RedirectResponse(url="/member", status_code=303)#使用status code 303可以讓瀏覽器重新發一個get request
-    else:
-        error_message = "Username or password is not correct"  # 自定義錯誤訊息
-        return RedirectResponse(url=f"/error?message={error_message}", status_code=303)
     
 @app.get("/member", response_class=HTMLResponse)  
 async def login_success(request: Request,page: int = Query(1, alias="page")):
