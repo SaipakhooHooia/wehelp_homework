@@ -1,0 +1,12 @@
+<p>...content before scripts...</p>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => alert("DOM loaded finished."));
+</script>
+
+<script defer src="https://javascript.info/article/script-async-defer/long.js"></script>
+<script defer src="https://javascript.info/article/script-async-defer/small.js"></script>
+
+<p>...content after scripts...</p>
+
+<!--當使用 defer 屬性在 <script> 標籤中時，該腳本會在整個文檔被解析完畢後、DOMContentLoaded 事件觸發之前執行-->

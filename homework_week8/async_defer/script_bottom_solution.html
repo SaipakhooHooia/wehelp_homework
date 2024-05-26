@@ -1,0 +1,11 @@
+<p>...content before script...</p>
+<p>...content after script...</p>
+
+<script src="https://javascript.info/article/script-async-defer/long.js?speed=1"></script>
+<script>
+    document.addEventListener('DOMContentLoaded',function(){
+        console.log("DOM loaded finished.");
+    })
+</script>
+
+<!--普通解決方式是將script移到最下方，就可以先完成html的render-->

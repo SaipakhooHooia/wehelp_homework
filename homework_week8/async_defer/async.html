@@ -1,0 +1,12 @@
+<p>...content before scripts...</p>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => alert("DOM loaded finished"));
+</script>
+
+<script async src="https://javascript.info/article/script-async-defer/long.js"></script>
+<script async src="https://javascript.info/article/script-async-defer/small.js"></script>
+
+<p>...content after scripts...</p>
+<!--script可能會在DOMContentLoaded之前或之後，不一定-->
+<!--html頁面內容也可以立即顯示，不會被script下載速度阻塞-->

@@ -1,0 +1,74 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e5e5e5;
+    color: #333;
+}
+
+h1 {
+    color: #fafafa;
+    justify-content: center;
+    align-items: center;
+}
+
+.title_container{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    background-color: #062e58eb;
+    height: 200px;
+}
+
+.login-container{
+    margin-top: 50px;
+    width:370px;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    gap:20px;
+}
+
+.comment-broad{
+    margin-top: 20px;
+    width:370px;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    gap:20px;
+}
+
+.wrap-text {
+    word-wrap: break-word; /* 舊版的屬性名稱 */
+    overflow-wrap: break-word; /* 新版的屬性名稱 */
+    white-space: normal; /* 確保換行行為正常 */
+    float: left;
+}
+
+.login-text{
+    font-weight: bold;
+    font-size: x-large;
+    width:100%;
+}
+
+.login-box{
+    font-size: x-large;
+    font-weight: bold;
+    width:20%;
+}
+
+#username, #password, #signup_name, #signup_username, #signup_password, #comment, #search_username, #new_name{
+    width: 70%;
+    margin-right: auto;
+    height: 30px;
+}
+
+form{
+    width: 100%;
+}
