@@ -6,6 +6,7 @@ from typing import Optional
 from starlette.middleware.sessions import SessionMiddleware
 import mysql.connector
 from pydantic import BaseModel
+import re
 from fastapi.middleware.cors import CORSMiddleware
 
 mydb = mysql.connector.connect(
@@ -20,15 +21,15 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["*"],  # 允許的來源列表
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["*"],  # 允許的HTTP方法
+    allow_headers=["*"],  # 允許的HTTP標頭
 )
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-app.add_middleware(SessionMiddleware, secret_key = 'test', https_only = False)
+app.add_middleware(SessionMiddleware, secret_key = 'test', https_only = True)
 
 templates = Jinja2Templates(directory="templates")
 
@@ -94,11 +95,16 @@ async def logout(request: Request):
     print("Session:", request.session)
     return RedirectResponse(url="/")
 
+password_pattern = re.compile(r'^[A-Za-z0-9@#$%]{4,8}$')
+
 @app.post("/signup", response_class=HTMLResponse)
 async def signup(signup_name: Optional[str] = Form(None), signup_username: Optional[str] = Form(None), signup_password: Optional[str] = Form(None)):
     mycursor.execute("SELECT COUNT(*) FROM website.member WHERE username = %s", (signup_username,))
     if mycursor.fetchone()[0] > 0:
         error_message = "Repeated username"
+        return RedirectResponse(url=f"/error?message={error_message}", status_code=303)
+    elif not password_pattern.match(signup_password):
+        error_message = "Password must be 4-8 characters long and include only English alphabets, numbers, and @#$%"
         return RedirectResponse(url=f"/error?message={error_message}", status_code=303)
     else:
         sql = "INSERT INTO `website`.`member` (name, username, password) VALUES (%s, %s, %s)"
@@ -137,18 +143,20 @@ async def delete(request: Request,message_id: Optional[str] = Form(None)):
     else:
         return RedirectResponse(url="/")
 
+class myResponse(BaseModel):
+    id: int
+    name: str
+    username: Optional[str] = None
+
 @app.get("/api/member", response_class=JSONResponse)
 async def search_member(request: Request,username:Optional[str] = Query(None)):
     mycursor.execute("SELECT id,name FROM website.member WHERE username = %s", (username,))
     user_record = mycursor.fetchone()
     if request.session.get("logged_in") == True and user_record:
         member_id, member_name = user_record
+        data = myResponse(id = member_id, name = member_name, username = username)
         response = {
-            "data":{
-            "id":member_id,
-            "name":member_name,
-            "username":username
-            }
+            "data":data
             }
         return response
     elif not user_record or not request.session["logged_in"]:
@@ -173,3 +181,4 @@ async def new_name(request: Request,newname:NameUpdate = Body(...)):
             return {"error":True}
     else:
         return {"error":True}
+

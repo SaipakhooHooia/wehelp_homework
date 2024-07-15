@@ -1,3 +1,9 @@
+.banner{
+    display: flex; 
+    align-items: center;
+    margin:5px;
+}
+
 .promotion_list{
     display:grid;
     /*flex: 1 1 33.33%;*/
